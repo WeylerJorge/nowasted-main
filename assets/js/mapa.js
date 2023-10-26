@@ -283,3 +283,4 @@ function inicializarMapa() {
     infoWindows.push(infoWindow);
   });
 }
+}
