@@ -66,7 +66,7 @@ section p {
     clear: both;
 }
 .clearfix {
-    *zoom: 1;
+    zoom: 1;
 }
 
 .tan {
@@ -220,6 +220,32 @@ section p {
     margin-top: 10px;
     max-width: 100%;
 }
+
+/* CSS para formatar a janela de informações */
+.info-window-content {
+  max-width: 200px; /* Ajuste o tamanho conforme necessário */
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* CSS para formatar a lista de itens */
+.item-list {
+  list-style: none;
+  padding: 0;
+}
+
+.item-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.icone-map-description {
+  width: 5px; /* Ajuste o tamanho do ícone conforme necessário */
+  height: 5px;
+  margin-right: 3px;
+}
+
 
 
 

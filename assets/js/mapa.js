@@ -13,20 +13,31 @@ const tiposDeItens = [
   new TipoItem("HD", "hd.png"),
 ];
 
+// Função para gerar uma string com estrelas com base na avaliação
+function generateStarRating(rating) {
+  const maxRating = 5; // Defina a avaliação máxima possível (por exemplo, 5 estrelas)
+  const starIcon = '⭐'; // Use um ícone de estrela (pode ser um emoji)
+
+  const filledStars = starIcon.repeat(rating);
+  const emptyStars = starIcon.repeat(maxRating - rating);
+
+  return `${filledStars}${emptyStars}`;
+}
+
 const pontosDeColeta = [
   {
     lat: -19.9255805,
     lng: -44.0891884,
     nome: "EcoPonto Fonte Grande",
-    descricao: "",
-    avaliacao: 0,
+    descricao: "Lugar ideal para descarte de material eletrônico, pilhas, baterias, lâmpadas, óleo de cozinha, entre outros.",
+    avaliacao: 4.23,
     itensAceitos: [tiposDeItens[0], tiposDeItens[1]], // Exemplo: Aceita Eletrodomésticos e Baterias
   },
   {
     lat: -19.9570892,
     lng: -44.0349695,
     nome: "BH Recicla Reciclagem de Lixo Eletrônico e Outras Sucatas.",
-    descricao: "",
+    descricao: "Este local é um dos melhores para descarte de lixo eletrônico, pilhas, baterias, lâmpadas, óleo de cozinha, entre outros.",
     avaliacao: 0,
     itensAceitos: [tiposDeItens[3], tiposDeItens[4]], // Exemplo: Aceita Placas para Computador e HD
   },
@@ -235,17 +246,19 @@ function inicializarMapa() {
 
     const infoWindow = new google.maps.InfoWindow({
       content: `
-        <strong>${ponto.nome}</strong>
-        <p>${ponto.descricao}</p>
-        <p>Avaliação: ${ponto.avaliacao}</p>
-        <p>Itens Aceitos:</p>
-        <ul style="list-style: none; padding: 0;">
-          ${ponto.itensAceitos.map((tipoItem) => `
-            <li style="margin: 5px 0;">
-              <img src="./assets/img/icon/${tipoItem.icone}" alt="${tipoItem.nome}" width="30" height="30" />
-              ${tipoItem.nome}
-            </li>`).join('')}
-        </ul>
+        <div class="info-window-content">
+          <strong>${ponto.nome}</strong><br><br>
+          <strong style="color: black; margin-bottom: -4px; font-size: 12px">${ponto.descricao}</strong>
+          <p style="color: green; margin-bottom: -2px; font-size: 14px">Avaliação: ${generateStarRating(ponto.avaliacao)}</p>
+          <p style="color: green; margin-bottom: -2px; font-size: 14px">Itens Aceitos:</p>
+          <ul class="item-list">
+            ${ponto.itensAceitos.map((tipoItem) => `
+              <li>
+                <img class="icone-map-description" src="./assets/img/icon/${tipoItem.icone}" alt="${tipoItem.nome}" />
+                ${tipoItem.nome}
+              </li>`).join('')}
+          </ul>
+        </div>
       `,
     });
 
