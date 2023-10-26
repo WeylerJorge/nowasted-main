@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Environmental</title>
+	<title>NO WASTE-D</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -20,6 +20,65 @@
 	<link rel="stylesheet" href="assets/css/slick.css">
 	<link rel="stylesheet" href="assets/css/nice-select.css">
 	<link rel="stylesheet" href="assets/css/style.css">
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzb3YjjgR94fUh-sbv4wPUptkVFxZBQLo&callback=inicializarMapa" async defer></script>
+
+	<script>
+		const pontosDeColeta = [
+  {
+    lat: -23.555,
+    lng: -46.650,
+    nome: "Coleta Eletrônica ABC",
+    descricao: "Este local aceita placas eletrônicas e computadores antigos.",
+    avaliacao: 4.7,
+  },
+  {
+    lat: -23.560,
+    lng: -46.635,
+    nome: "ReciclaTech",
+    descricao: "Recicle seus dispositivos eletrônicos e ajude o meio ambiente.",
+    avaliacao: 4.9,
+  },
+  // Adicione mais pontos de coleta com informações correspondentes.
+];
+
+function inicializarMapa() {
+  const localizacaoInicial = { lat: -23.550520, lng: -46.633308 };
+  const mapa = new google.maps.Map(document.getElementById("mapa"), {
+    zoom: 10,
+    center: localizacaoInicial,
+  });
+
+  const infoWindows = []; // Array para armazenar as janelas de informações
+
+  pontosDeColeta.forEach((ponto) => {
+    const marker = new google.maps.Marker({
+      position: { lat: ponto.lat, lng: ponto.lng },
+      map: mapa,
+      title: ponto.nome,
+    });
+
+    const infoWindow = new google.maps.InfoWindow({
+      content: `
+        <strong>${ponto.nome}</strong>
+        <p>${ponto.descricao}</p>
+        <p>Avaliação: ${ponto.avaliacao}</p>
+      `,
+    });
+
+    // Adicione um evento de mouseover para exibir informações quando o mouse passa por cima
+    marker.addListener("mouseover", () => {
+      infoWindow.open(mapa, marker);
+    });
+
+    // Adicione um evento de mouseout para fechar a janela de informações quando o mouse sai do marcador
+    marker.addListener("mouseout", () => {
+      infoWindow.close();
+    });
+
+    infoWindows.push(infoWindow);
+  });
+}
+	  </script>
 </head>
 <body>
 	<!--? Preloader Start -->
@@ -111,7 +170,7 @@
 		<section class="sample-text-area">
 			<div class="container box_1170">
 				<h3 class="text-heading">Mapa pontos de descarte</h3>
-				<iframe src="https://www.google.com/maps/d/embed?mid=1EJzBEjX19klCKIOBXulIMXJY8k0_a5w&ehbc=2E312F&noprof=1" class="mapFrame"></iframe>
+				<div id="mapa" style="height: 400px; width: 100%;"></div>
 			</div>
 		</section>
 		<!-- End Sample Area -->
@@ -859,6 +918,9 @@
 								<script src="./assets/js/jquery.validate.min.js"></script>
 								<script src="./assets/js/mail-script.js"></script>
 								<script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+
+								<!-- Maps js -->
+								<script src="./assets/js/maps.js"></script>
 								
 								<!-- Jquery Plugins, main Jquery -->	
 								<script src="./assets/js/plugins.js"></script>
