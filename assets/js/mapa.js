@@ -238,12 +238,6 @@ function inicializarMapa() {
 
   const legend = document.getElementById("legend");
 
-  for (const key in icons) {
-    const type = icons[key];
-    const name = type.name;
-    const icon = type.icon;
-    const div = document.createElement("div");
-
   pontosDeColeta.forEach((ponto) => {
     const marker = new google.maps.Marker({
       position: { lat: ponto.lat, lng: ponto.lng },
@@ -282,5 +276,4 @@ function inicializarMapa() {
 
     infoWindows.push(infoWindow);
   });
-}
 }
