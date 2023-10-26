@@ -248,21 +248,21 @@ function inicializarMapa() {
 
     const infoWindow = new google.maps.InfoWindow({
       content: `
-        <div class="info-window-content">
+        <div class="info-window-content" style="max-width: 200px">
           <strong>${ponto.nome}</strong><br><br>
-          <strong style="color: black; margin-bottom: -4px; font-size: 12px">${ponto.descricao}</strong>
-          <p style="color: green; margin-bottom: -2px; font-size: 14px">Avaliação: ${generateStarRating(ponto.avaliacao)}</p>
+          <strong style="color: black; margin-bottom: -2px; font-size: 12px">${ponto.descricao}</strong>
+          <p style="color: green; margin-bottom: -10px; font-size: 14px">Avaliação: ${generateStarRating(ponto.avaliacao)}</p>
           <p style="color: green; margin-bottom: -2px; font-size: 14px">Itens Aceitos:</p>
-          <ul class="item-list">
+          <ul class="item-list" style="list-style: none; display: flex; padding: 0;">
             ${ponto.itensAceitos.map((tipoItem) => `
-              <li>
-                <img class="icone-map-description" src="./assets/img/icon/${tipoItem.icone}" alt="${tipoItem.nome}" />
-                ${tipoItem.nome}
+              <li style="margin-right: 10px;">
+                <img class="icone-map-description" src="./assets/img/icon/${tipoItem.icone}" alt="${tipoItem.nome}" title="${tipoItem.nome}" />
               </li>`).join('')}
           </ul>
         </div>
       `,
     });
+    
 
     // Adicione um evento de mouseover para exibir informações quando o mouse passa por cima
     marker.addListener("mouseover", () => {
