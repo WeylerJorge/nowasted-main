@@ -1,7 +1,5 @@
 # NoWaste-D - Plataforma de Descarte Consciente de Resíduos Eletrônicos
 
-![NoWaste-D Logo](./assets/img/logo.png)
-
 Bem-vindo ao repositório da NoWaste-D, uma plataforma dedicada a promover o descarte consciente de resíduos eletrônicos. Esta aplicação web utiliza a API do Google Maps para localizar pontos de coleta de resíduos eletrônicos, proporcionando uma maneira fácil e eficaz para os usuários encontrarem locais próximos e descartarem seus dispositivos eletrônicos de maneira sustentável.
 
 ## Funcionalidades Principais
